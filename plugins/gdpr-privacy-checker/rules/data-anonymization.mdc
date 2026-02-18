@@ -1,0 +1,56 @@
+---
+description: Implement proper data anonymization and pseudonymization techniques
+alwaysApply: true
+---
+
+data-anonymization:
+
+- Anonymize data when full PII is not needed
+- Use pseudonymization for data that needs to be reversible
+- Remove or hash direct identifiers
+- Aggregate data to prevent re-identification
+- Apply k-anonymity, l-diversity, or differential privacy where appropriate
+- Document anonymization techniques used
+- Regularly test for re-identification risks
+
+Anonymization techniques:
+- Hashing: One-way transformation of identifiers
+- Generalization: Replace specific values with ranges
+- Suppression: Remove identifying attributes
+- Perturbation: Add noise to data
+- Aggregation: Combine individual records
+
+Good implementation:
+```javascript
+// Anonymize for analytics
+function anonymizeUserData(user) {
+  return {
+    userId: hash(user.id), // Pseudonymized
+    ageRange: getAgeRange(user.age), // Generalized
+    city: user.city, // Keep for regional analysis
+    // Remove: name, email, phone, address
+    activityCount: user.activities.length
+  };
+}
+
+// K-anonymity for data export
+function applyKAnonymity(dataset, k = 5) {
+  return dataset
+    .groupBy(['city', 'ageRange'])
+    .filter(group => group.length >= k)
+    .map(anonymizeGroup);
+}
+```
+
+Bad practices:
+```javascript
+// Insufficient anonymization
+const analytics = {
+  userId: user.id, // Direct identifier
+  email: user.email, // PII
+  exactAge: user.age // Too specific
+};
+
+// Reversible "anonymization"
+const masked = user.email.replace(/@.*/, '@***'); // Still identifiable
+```

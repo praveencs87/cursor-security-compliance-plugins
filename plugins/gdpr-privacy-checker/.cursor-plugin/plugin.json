@@ -1,0 +1,13 @@
+{
+  "name": "gdpr-privacy-checker",
+  "displayName": "GDPR Privacy Checker",
+  "version": "1.0.0",
+  "description": "GDPR and privacy compliance checker for identifying PII, data retention issues, consent management, and privacy violations.",
+  "author": {
+    "name": "Security Tools Team",
+    "email": "security@example.com"
+  },
+  "license": "MIT",
+  "keywords": ["gdpr", "privacy", "pii", "compliance", "data-protection", "consent", "anonymization"],
+  "logo": "assets/logo.svg"
+}

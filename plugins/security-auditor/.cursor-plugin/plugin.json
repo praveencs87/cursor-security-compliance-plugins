@@ -1,0 +1,13 @@
+{
+  "name": "security-auditor",
+  "displayName": "Security Auditor",
+  "version": "1.0.0",
+  "description": "Comprehensive security auditing plugin with vulnerability scanning, OWASP Top 10 checks, dependency audits, and security hooks.",
+  "author": {
+    "name": "Security Tools Team",
+    "email": "security@example.com"
+  },
+  "license": "MIT",
+  "keywords": ["security", "vulnerability", "owasp", "audit", "scanning", "dependencies", "injection", "xss"],
+  "logo": "assets/logo.svg"
+}

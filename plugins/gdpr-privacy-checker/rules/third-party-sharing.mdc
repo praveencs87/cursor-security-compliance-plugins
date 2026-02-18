@@ -1,0 +1,62 @@
+---
+description: Control and document third-party data sharing in compliance with GDPR
+alwaysApply: true
+---
+
+third-party-sharing:
+
+- Obtain explicit consent before sharing data with third parties
+- Maintain data processing agreements (DPAs) with all processors
+- Document all third-party data transfers
+- Implement data transfer impact assessments for international transfers
+- Use Standard Contractual Clauses (SCCs) for non-EU transfers
+- Provide transparency about third-party sharing in privacy policy
+- Implement data sharing audit logs
+- Verify third-party GDPR compliance
+
+Requirements for third-party sharing:
+- Legal basis for sharing (consent, contract, legitimate interest)
+- Data Processing Agreement in place
+- Privacy impact assessment completed
+- User notification and consent
+- Adequate safeguards for international transfers
+- Right to object to sharing
+
+Good implementation:
+```javascript
+// Check consent before sharing
+async function shareWithThirdParty(userId, thirdParty, data) {
+  const consent = await db.consents.findOne({
+    userId,
+    thirdParty,
+    type: 'data-sharing'
+  });
+  
+  if (!consent || !consent.granted) {
+    throw new Error('No consent for third-party sharing');
+  }
+  
+  // Log the transfer
+  await db.dataTransfers.create({
+    userId,
+    thirdParty,
+    dataTypes: Object.keys(data),
+    timestamp: new Date(),
+    legalBasis: 'consent'
+  });
+  
+  return await thirdParty.api.send(data);
+}
+```
+
+Bad practices:
+```javascript
+// Share without consent
+await analytics.track(user.email, user.behavior);
+
+// No documentation
+await thirdPartyApi.send(userData); // No audit trail
+
+// International transfer without safeguards
+await usServer.store(euUserData); // GDPR violation
+```

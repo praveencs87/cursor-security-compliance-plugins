@@ -1,0 +1,25 @@
+---
+description: Prevent command injection vulnerabilities when executing shell commands
+alwaysApply: true
+---
+
+command-injection-prevention:
+
+- Avoid executing shell commands with user input when possible
+- Use safe APIs that don't invoke a shell (e.g., child_process.execFile instead of exec)
+- Never concatenate user input into shell commands
+- Use argument arrays instead of string concatenation
+- Validate and whitelist allowed inputs
+- Escape shell metacharacters if shell execution is unavoidable
+
+Dangerous patterns:
+```javascript
+exec(`rm -rf ${userPath}`);
+spawn('sh', ['-c', `cat ${filename}`]);
+```
+
+Safe patterns:
+```javascript
+execFile('rm', ['-rf', userPath]);
+spawn('cat', [filename]);
+```

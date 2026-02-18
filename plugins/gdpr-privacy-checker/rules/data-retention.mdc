@@ -1,0 +1,49 @@
+---
+description: Implement proper data retention policies and automatic deletion mechanisms
+alwaysApply: true
+---
+
+data-retention:
+
+- Define clear data retention periods for different data types
+- Implement automatic data deletion after retention period
+- Document retention policies in privacy policy
+- Provide user-initiated deletion mechanisms
+- Maintain audit logs of data deletion
+- Consider legal hold requirements before deletion
+- Implement soft delete with recovery period where appropriate
+
+Retention policy requirements:
+- User account data: Delete within 30 days of account closure request
+- Session data: Delete after 90 days of inactivity
+- Analytics data: Anonymize after 12 months
+- Backup data: Include in deletion processes
+- Audit logs: Retain for compliance period (typically 3-7 years)
+
+Good implementation:
+```javascript
+// Scheduled cleanup job
+async function cleanupExpiredData() {
+  const retentionDate = new Date();
+  retentionDate.setDate(retentionDate.getDate() - 90);
+  
+  await db.sessions.deleteMany({
+    lastActivity: { $lt: retentionDate }
+  });
+}
+
+// User-initiated deletion
+async function deleteUserData(userId) {
+  await db.users.softDelete(userId);
+  await scheduleHardDelete(userId, 30); // 30-day recovery period
+}
+```
+
+Bad practices:
+```javascript
+// No retention policy
+await db.users.create(userData); // Stored forever
+
+// No deletion mechanism
+// Users cannot delete their data
+```

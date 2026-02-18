@@ -1,0 +1,60 @@
+---
+description: Implement proper consent management for data collection and processing
+alwaysApply: true
+---
+
+consent-management:
+
+- Obtain explicit consent before collecting personal data
+- Provide granular consent options (not all-or-nothing)
+- Make consent withdrawal as easy as giving consent
+- Store consent records with timestamps
+- Re-request consent when purposes change
+- Implement consent for cookies and tracking
+- Provide clear privacy notices before consent
+- Never use pre-checked boxes for consent
+
+Consent requirements:
+- Must be freely given, specific, informed, and unambiguous
+- Clear affirmative action required (opt-in, not opt-out)
+- Separate consent for different processing purposes
+- Easy withdrawal mechanism
+- Documented consent records
+
+Good implementation:
+```javascript
+// Granular consent
+const consentForm = {
+  essential: true, // Required for service
+  analytics: false, // User choice
+  marketing: false, // User choice
+  thirdParty: false // User choice
+};
+
+await db.consents.create({
+  userId,
+  consents: consentForm,
+  timestamp: new Date(),
+  ipAddress: req.ip
+});
+
+// Easy withdrawal
+async function withdrawConsent(userId, consentType) {
+  await db.consents.update(userId, {
+    [consentType]: false,
+    withdrawnAt: new Date()
+  });
+  await stopProcessing(userId, consentType);
+}
+```
+
+Bad practices:
+```javascript
+// Pre-checked consent
+<input type="checkbox" checked> Accept all
+
+// No consent record
+// Just start collecting data
+
+// No withdrawal mechanism
+```

@@ -1,0 +1,43 @@
+---
+description: Proper handling of Personally Identifiable Information (PII) in compliance with GDPR
+alwaysApply: true
+---
+
+pii-handling:
+
+- Identify and classify all PII data (names, emails, phone numbers, addresses, IPs, etc.)
+- Implement data minimization - only collect necessary PII
+- Encrypt PII at rest and in transit
+- Implement proper access controls for PII
+- Log all PII access for audit trails
+- Provide mechanisms for data export (right to data portability)
+- Implement data deletion capabilities (right to be forgotten)
+- Anonymize or pseudonymize PII where possible
+
+PII categories to protect:
+- Direct identifiers: Name, email, phone, SSN, passport number
+- Indirect identifiers: IP address, device ID, cookies, location data
+- Sensitive data: Health records, financial data, biometric data, racial/ethnic origin
+
+Good practices:
+```javascript
+// Encrypt PII before storage
+const encryptedEmail = encrypt(userEmail);
+await db.users.create({ email: encryptedEmail });
+
+// Anonymize for analytics
+const anonymizedData = {
+  userId: hash(user.id),
+  action: user.action,
+  // Remove PII fields
+};
+```
+
+Bad practices to avoid:
+```javascript
+// Storing PII in plain text
+await db.users.create({ email: userEmail, ssn: userSSN });
+
+// Logging PII
+console.log('User email:', user.email);
+```

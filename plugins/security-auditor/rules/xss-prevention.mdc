@@ -1,0 +1,26 @@
+---
+description: Prevent Cross-Site Scripting (XSS) attacks by properly escaping and sanitizing user input
+alwaysApply: true
+---
+
+xss-prevention:
+
+- Always escape or sanitize user-generated content before rendering it in HTML
+- Use framework-provided escaping mechanisms (React JSX, Vue templates)
+- Use trusted sanitization libraries like DOMPurify for rich content
+- Implement Content Security Policy (CSP) headers
+- Validate input on both client and server side
+
+Dangerous patterns to avoid:
+```javascript
+element.innerHTML = userInput;
+<div dangerouslySetInnerHTML={{ __html: userComment }} />
+<div v-html="userContent"></div>
+```
+
+Safe patterns to use:
+```javascript
+element.textContent = userInput;
+<div>{userInput}</div>
+const clean = DOMPurify.sanitize(userInput);
+```

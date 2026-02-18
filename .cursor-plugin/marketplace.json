@@ -1,0 +1,24 @@
+{
+  "name": "security-compliance-plugins",
+  "owner": {
+    "name": "Security Tools Team",
+    "email": "security@example.com"
+  },
+  "metadata": {
+    "description": "Security and compliance plugins for Cursor: Security Auditor and GDPR/Privacy Compliance Checker",
+    "version": "1.0.0",
+    "pluginRoot": "plugins"
+  },
+  "plugins": [
+    {
+      "name": "security-auditor",
+      "source": "./plugins/security-auditor",
+      "description": "Comprehensive security auditing with vulnerability scanning, OWASP Top 10 checks, and dependency audits"
+    },
+    {
+      "name": "gdpr-privacy-checker",
+      "source": "./plugins/gdpr-privacy-checker",
+      "description": "GDPR and privacy compliance checker for identifying PII, data retention issues, and privacy violations"
+    }
+  ]
+}

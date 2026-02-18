@@ -1,0 +1,24 @@
+---
+description: Prevent SQL injection vulnerabilities by using parameterized queries and prepared statements
+alwaysApply: true
+---
+
+sql-injection-prevention:
+
+- Always use parameterized queries or prepared statements when constructing SQL queries
+- Never concatenate user input directly into SQL strings using template literals or string concatenation
+- Use ORM/query builders that handle escaping automatically (e.g., Sequelize, TypeORM, Prisma)
+- Validate and sanitize all user inputs before database operations
+- Apply principle of least privilege to database users
+
+Bad patterns to avoid:
+```javascript
+const query = `SELECT * FROM users WHERE username = '${userInput}'`;
+const sql = `DELETE FROM posts WHERE id = ${req.params.id}`;
+```
+
+Good patterns to use:
+```javascript
+db.query('SELECT * FROM users WHERE username = $1', [userInput]);
+User.findOne({ where: { username: userInput } });
+```

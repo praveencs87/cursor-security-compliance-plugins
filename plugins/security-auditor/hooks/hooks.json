@@ -1,0 +1,33 @@
+{
+  "hooks": {
+    "beforeShellExecution": [
+      {
+        "command": "./scripts/validate-shell-command.sh",
+        "matcher": "rm|curl|wget|eval|exec",
+        "description": "Block dangerous shell commands that could be exploited"
+      }
+    ],
+    "afterFileEdit": [
+      {
+        "command": "./scripts/scan-for-secrets.sh",
+        "description": "Scan edited files for hardcoded credentials and secrets"
+      },
+      {
+        "command": "./scripts/check-security-patterns.sh",
+        "description": "Check for common security anti-patterns in modified code"
+      }
+    ],
+    "beforeCommit": [
+      {
+        "command": "./scripts/pre-commit-security-check.sh",
+        "description": "Run security checks before allowing commit"
+      }
+    ],
+    "sessionEnd": [
+      {
+        "command": "./scripts/security-audit-summary.sh",
+        "description": "Generate security audit summary for the session"
+      }
+    ]
+  }
+}
