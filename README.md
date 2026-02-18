@@ -200,7 +200,7 @@ MIT License - see LICENSE file for details
 
 For issues, questions, or feature requests:
 - GitHub Issues: [your-repo-url]
-- Email: security@example.com
+- Email: praveencs87@gmail.com
 
 ## Compliance Notes
 

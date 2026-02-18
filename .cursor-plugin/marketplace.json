@@ -1,8 +1,8 @@
 {
   "name": "security-compliance-plugins",
   "owner": {
-    "name": "Security Tools Team",
-    "email": "security@example.com"
+    "name": "Praveen",
+    "email": "praveencs87@gmail.com"
   },
   "metadata": {
     "description": "Security and compliance plugins for Cursor: Security Auditor and GDPR/Privacy Compliance Checker",
