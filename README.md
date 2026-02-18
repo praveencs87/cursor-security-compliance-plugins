@@ -199,7 +199,7 @@ MIT License - see LICENSE file for details
 ## Support
 
 For issues, questions, or feature requests:
-- GitHub Issues: [your-repo-url]
+- GitHub Issues: https://github.com/praveencs87/cursor-security-compliance-plugins/issues
 - Email: praveencs87@gmail.com
 
 ## Compliance Notes
