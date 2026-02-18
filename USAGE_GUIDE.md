@@ -22,7 +22,7 @@ Complete guide for using the Security Auditor and GDPR Privacy Checker plugins.
 ### Option 2: From Source
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/cursor-security-plugins.git
+   git clone https://github.com/praveencs87/cursor-security-compliance-plugins.git
    ```
 2. In Cursor: Settings → Plugins → Install from folder
 3. Select the plugin folder
