@@ -460,9 +460,9 @@ jobs:
 ## Support
 
 For issues or questions:
-- GitHub Issues: [repository-url]
-- Email: security@example.com
-- Documentation: [docs-url]
+- GitHub Issues: https://github.com/praveencs87/cursor-security-compliance-plugins/issues
+- Email: praveencs87@gmail.com
+- Documentation: https://github.com/praveencs87/cursor-security-compliance-plugins
 
 ## Updates
 
